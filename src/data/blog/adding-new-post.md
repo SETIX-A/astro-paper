@@ -2,45 +2,44 @@
 author: Sat Naing
 pubDatetime: 2022-09-23T15:22:00Z
 modDatetime: 2025-06-13T16:52:45.934Z
-title: Adding new posts in AstroPaper theme
+title: 在 AstroPaper 主题中添加新文章
 slug: adding-new-posts-in-astropaper-theme
 featured: true
 draft: false
 tags:
   - docs
 description:
-  Some rules & recommendations for creating or adding new posts using AstroPaper
-  theme.
+  关于使用 AstroPaper 主题创建或添加新文章的一些规则和建议。
 ---
 
-Here are some rules/recommendations, tips & ticks for creating new posts in AstroPaper blog theme.
+以下是关于使用 AstroPaper 博客主题创建新文章的一些规则/建议、提示和技巧。
 
 <figure>
   <img
     src="https://images.pexels.com/photos/159618/still-life-school-retro-ink-159618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    alt="Free Classic wooden desk with writing materials, vintage clock, and a leather bag. Stock Photo"
+    alt="一张免费的经典木质书桌图片，上面有书写材料、复古时钟和一个皮包。图库照片"
   />
     <figcaption class="text-center">
-    Photo by <a href="https://www.pexels.com/photo/brown-wooden-desk-159618/">Pixabay</a>
+    照片由 <a href="https://www.pexels.com/photo/brown-wooden-desk-159618/">Pixabay</a> 提供
   </figcaption>
 </figure>
 
-## Table of contents
+## 目录
 
-## Creating a Blog Post
+## 创建一篇博客文章
 
-To write a new blog post, create a markdown file inside the `src/data/blog/` directory.
+要撰写一篇新的博客文章，请在 `src/data/blog/` 目录下创建一个 Markdown 文件。
 
-> Prior to AstroPaper v5.1.0, all blog posts had to be in `src/data/blog/`, meaning you couldn't organize them into subdirectories.
+> 在 AstroPaper v5.1.0 之前，所有的博客文章都必须放在 `src/data/blog/` 目录下，这意味着您无法将它们组织到子目录中。
 
-Starting from AstroPaper v5.1.0, you can now organize blog posts into subdirectories, making it easier to manage your content.
+从 AstroPaper v5.1.0 开始，您现在可以将博客文章组织到子目录中，从而更轻松地管理您的内容。
 
-For example, if you want to group posts under `2025`, you can place them in `src/data/blog/2025/`. This also affects the post URL, so `src/data/blog/2025/example-post.md` will be available at `/posts/2025/example-post`.
+例如，如果您想将文章分组到 `2025` 目录下，您可以将它们放置在 `src/data/blog/2025/`。这也会影响文章的 URL，因此 `src/data/blog/2025/example-post.md` 的访问地址将是 `/posts/2025/example-post`。
 
-If you don’t want subdirectories to affect the post URL, just prefix the folder name with an underscore `_`.
+如果您不希望子目录影响文章的 URL，只需在文件夹名称前加上下划线 `_`。
 
 ```bash
-# Example: blog post structure and URLs
+# 示例：博客文章结构及其 URL
 src/data/blog/very-first-post.md          -> mysite.com/posts/very-first-post
 src/data/blog/2025/example-post.md        -> mysite.com/posts/2025/example-post
 src/data/blog/_2026/another-post.md       -> mysite.com/posts/another-post
@@ -48,84 +47,84 @@ src/data/blog/docs/_legacy/how-to.md      -> mysite.com/posts/docs/how-to
 src/data/blog/Example Dir/Dummy Post.md   -> mysite.com/posts/example-dir/dummy-post
 ```
 
-> 💡 Tip: You can override a blog post’s slug in the frontmatter as well. See the next section for more details.
+> 💡 提示：您也可以在 frontmatter 中覆盖博客文章的 slug。更多详情请参见下一节。
 
-If the subdirectory URL doesn’t appear in the build output, remove node_modules, reinstall packages, and then rebuild.
+如果子目录的 URL 没有出现在构建输出中，请删除 `node_modules`，重新安装依赖包，然后重新构建。
 
 ## Frontmatter
 
-Frontmatter is the main place to store some important information about the blog post (article). Frontmatter lies at the top of the article and is written in YAML format. Read more about frontmatter and its usage in [astro documentation](https://docs.astro.build/en/guides/markdown-content/).
+Frontmatter 是存储博客文章（article）一些重要信息的主要位置。Frontmatter 位于文章的顶部，以 YAML 格式编写。在 [Astro 文档](https://docs.astro.build/en/guides/markdown-content/)中阅读更多关于 frontmatter 及其用法的信息。
 
-Here is the list of frontmatter property for each post.
+以下是每篇文章的 frontmatter 属性列表。
 
-| Property           | Description                                                                                                                           | Remark                                         |
+| 属性               | 描述                                                                                                                                  | 备注                                           |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **_title_**        | Title of the post. (h1)                                                                                                               | required<sup>\*</sup>                          |
-| **_description_**  | Description of the post. Used in post excerpt and site description of the post.                                                       | required<sup>\*</sup>                          |
-| **_pubDatetime_**  | Published datetime in ISO 8601 format.                                                                                                | required<sup>\*</sup>                          |
-| **_modDatetime_**  | Modified datetime in ISO 8601 format. (only add this property when a blog post is modified)                                           | optional                                       |
-| **_author_**       | Author of the post.                                                                                                                   | default = SITE.author                          |
-| **_slug_**         | Slug for the post. This field is optional.                                                                                            | default = slugified file name                  |
-| **_featured_**     | Whether or not display this post in featured section of home page                                                                     | default = false                                |
-| **_draft_**        | Mark this post 'unpublished'.                                                                                                         | default = false                                |
-| **_tags_**         | Related keywords for this post. Written in array yaml format.                                                                         | default = others                               |
-| **_ogImage_**      | OG image of the post. Useful for social media sharing and SEO. This can be a remote URL or an image path relative to current folder.  | default = `SITE.ogImage` or generated OG image |
-| **_canonicalURL_** | Canonical URL (absolute), in case the article already exists on other source.                                                         | default = `Astro.site` + `Astro.url.pathname`  |
-| **_hideEditPost_** | Hide editPost button under blog title. This applies only to the current blog post.                                                    | default = false                                |
-| **_timezone_**     | Specify a timezone in IANA format for the current blog post. This will override the `SITE.timezone` config for the current blog post. | default = `SITE.timezone`                      |
+| **_title_**        | 文章的标题。(h1)                                                                                                                      | 必需<sup>\*</sup>                              |
+| **_description_**  | 文章的描述。用于文章摘要和网站的文章描述。                                                                                            | 必需<sup>\*</sup>                              |
+| **_pubDatetime_**  | 文章的发布日期时间，采用 ISO 8601 格式。                                                                                              | 必需<sup>\*</sup>                              |
+| **_modDatetime_**  | 文章的修改日期时间，采用 ISO 8601 格式。(仅当博客文章被修改时才添加此属性)                                                              | 可选                                           |
+| **_author_**       | 文章的作者。                                                                                                                          | 默认 = SITE.author                             |
+| **_slug_**         | 文章的 slug (URL片段)。此字段为可选。                                                                                                 | 默认 = 根据文件名生成的 slug                   |
+| **_featured_**     | 是否在主页的精选部分显示此文章。                                                                                                      | 默认 = false                                   |
+| **_draft_**        | 将此文章标记为‘未发布’。                                                                                                              | 默认 = false                                   |
+| **_tags_**         | 与此文章相关的关键词。以数组 YAML 格式编写。                                                                                          | 默认 = others                                  |
+| **_ogImage_**      | 文章的 OG 图片。对社交媒体分享和 SEO 有用。这可以是一个远程 URL 或相对于当前文件夹的图片路径。                                        | 默认 = `SITE.ogImage` 或自动生成的 OG 图片     |
+| **_canonicalURL_** | 规范 URL (绝对路径)，用于文章已存在于其他来源的情况。                                                                                  | 默认 = `Astro.site` + `Astro.url.pathname`     |
+| **_hideEditPost_** | 在博客标题下隐藏“编辑文章”按钮。此设置仅对当前博客文章生效。                                                                          | 默认 = false                                   |
+| **_timezone_**     | 为当前博客文章指定一个 IANA 格式的时区。这将覆盖当前文章的 `SITE.timezone` 配置。                                                      | 默认 = `SITE.timezone`                         |
 
-> Tip! You can get ISO 8601 datetime by running `new Date().toISOString()` in the console. Make sure you remove quotes though.
+> 提示！您可以在浏览器控制台中运行 `new Date().toISOString()` 来获取 ISO 8601 格式的日期时间。不过请确保移除引号。
 
-Only `title`, `description` and `pubDatetime` fields in frontmatter must be specified.
+在 frontmatter 中，只有 `title`、`description` 和 `pubDatetime` 字段是必须指定的。
 
-Title and description (excerpt) are important for search engine optimization (SEO) and thus AstroPaper encourages to include these in blog posts.
+标题和描述（摘要）对于搜索引擎优化（SEO）非常重要，因此 AstroPaper 鼓励在博客文章中包含这些内容。
 
-`slug` is the unique identifier of the url. Thus, `slug` must be unique and different from other posts. The whitespace of `slug` should to be separated with `-` or `_` but `-` is recommended. Slug is automatically generated using the blog post file name. However, you can define your `slug` as a frontmatter in your blog post.
+`slug` 是 URL 的唯一标识符。因此，`slug` 必须是唯一的，且与其他文章不同。`slug` 中的空格应使用 `-` 或 `_` 分隔，但推荐使用 `-`。Slug 是根据博客文章的文件名自动生成的。但是，您可以在博客文章的 frontmatter 中自定义 `slug`。
 
-For example, if the blog file name is `adding-new-post.md` and you don't specify the slug in your frontmatter, Astro will automatically create a slug for the blog post using the file name. Thus, the slug will be `adding-new-post`. But if you specify the `slug` in the frontmatter, this will override the default slug. You can read more about this in [Astro Docs](https://docs.astro.build/en/guides/content-collections/#defining-custom-slugs).
+例如，如果博客文件名为 `adding-new-post.md`，并且您没有在 frontmatter 中指定 slug，Astro 将使用文件名自动为该文章创建一个 slug。因此，slug 将是 `adding-new-post`。但如果您在 frontmatter 中指定了 `slug`，这将覆盖默认的 slug。您可以在 [Astro 文档](https://docs.astro.build/en/guides/content-collections/#defining-custom-slugs)中了解更多相关信息。
 
-If you omit `tags` in a blog post (in other words, if no tag is specified), the default tag `others` will be used as a tag for that post. You can set the default tag in the `content.config.ts` file.
+如果您在某篇博客文章中省略了 `tags`（换句话说，没有指定任何标签），那么默认的 `others` 标签将被用作该文章的标签。您可以在 `content.config.ts` 文件中设置默认标签。
 
 ```ts file="src/content.config.ts"
 export const blogSchema = z.object({
   // ...
   draft: z.boolean().optional(),
   // [!code highlight:1]
-  tags: z.array(z.string()).default(["others"]), // replace "others" with whatever you want
+  tags: z.array(z.string()).default(["others"]), // 将 "others" 替换为您想要的任何值
   // ...
 });
 ```
 
-### Sample Frontmatter
+### Frontmatter 示例
 
-Here is the sample frontmatter for a post.
+以下是一篇文章的 frontmatter 示例。
 
 ```yaml file="src/data/blog/sample-post.md"
 ---
-title: The title of the post
-author: your name
+title: 文章的标题
+author: 你的名字
 pubDatetime: 2022-09-21T05:17:19Z
 slug: the-title-of-the-post
 featured: true
 draft: false
 tags:
-  - some
-  - example
-  - tags
+  - 一些
+  - 示例
+  - 标签
 ogImage: ../../assets/images/example.png # src/assets/images/example.png
-# ogImage: "https://example.org/remote-image.png" # remote URL
-description: This is the example description of the example post.
+# ogImage: "https://example.org/remote-image.png" # 远程 URL
+description: 这是示例文章的示例描述。
 canonicalURL: https://example.org/my-article-was-already-posted-here
 ---
 ```
 
-## Adding table of contents
+## 添加目录
 
-By default, a post (article) does not include any table of contents (toc). To include toc, you have to specify it in a specific way.
+默认情况下，一篇文章（article）不包含任何目录（toc）。要包含目录，您必须以一种特定的方式来指定它。
 
-Write `Table of contents` in h2 format (## in markdown) and place it where you want it to be appeared on the post.
+以 h2 格式（在 markdown 中是 `##`）编写 `Table of contents`，并将其放置在您希望它在文章中出现的位置。
 
-For instance, if you want to place your table of contents just under the intro paragraph (like I usually do), you can do that in the following way.
+例如，如果您想将目录放置在引言段落的正下方（就像我通常做的那样），您可以按以下方式操作。
 
 <!-- prettier-ignore-start -->
 ```md
@@ -133,24 +132,24 @@ For instance, if you want to place your table of contents just under the intro p
 # frontmatter
 ---
 
-Here are some recommendations, tips & ticks for creating new posts in AstroPaper blog theme.
+这里是关于使用 AstroPaper 博客主题创建新文章的一些建议、提示和技巧。
 
 <!-- [!code ++] -->
 ## Table of contents
 
-<!-- the rest of the post -->
+<!-- 文章的其余部分 -->
 ```
 <!-- prettier-ignore-end -->
 
-## Headings
+## 标题
 
-There's one thing to note about headings. The AstroPaper blog posts use title (title in the frontmatter) as the main heading of the post. Therefore, the rest of the heading in the post should be using h2 \~ h6.
+关于标题，有一点需要注意。AstroPaper 的博客文章使用 frontmatter 中的 title 作为文章的主标题。因此，文章中其余的标题应该使用 h2 ~ h6。
 
-This rule is not mandatory, but highly recommended for visual, accessibility and SEO purposes.
+这条规则不是强制性的，但为了视觉效果、无障碍性和 SEO 目的，强烈推荐遵守。
 
-## Syntax Highlighting
+## 语法高亮
 
-AstroPaper uses [Shiki](https://shiki.style/) as the default syntax highlighting. Starting from AstroPaper v5.4, [@shikijs/transformers](https://shiki.style/packages/transformers) is used to enhance better fenced code blocks. If you don't want to use it, you can simply remove it like this
+AstroPaper 使用 [Shiki](https://shiki.style/) 作为默认的语法高亮工具。从 AstroPaper v5.4 开始，使用 [@shikijs/transformers](https://shiki.style/packages/transformers) 来增强代码块的显示效果。如果您不想使用它，可以像这样简单地移除它：
 
 ```bash
 pnpm remove @shikijs/transformers
@@ -170,7 +169,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: {
-      // For more themes, visit https://shiki.style/themes
+      // 更多主题，请访问 https://shiki.style/themes
       themes: { light: "min-light", dark: "night-owl" },
       defaultColor: false,
       wrap: false,
@@ -187,63 +186,63 @@ export default defineConfig({
 }
 ```
 
-## Storing Images for Blog Content
+## 为博客内容存储图片
 
-Here are two methods for storing images and displaying them inside a markdown file.
+这里有两种在 Markdown 文件中存储和显示图片的方法。
 
-> Note! If it's a requirement to style optimized images in markdown you should [use MDX](https://docs.astro.build/en/guides/images/#images-in-mdx-files).
+> 注意！如果需要在 markdown 中为优化后的图片设置样式，您应该[使用 MDX](https://docs.astro.build/en/guides/images/#images-in-mdx-files)。
 
-### Inside `src/assets/` directory (recommended)
+### 在 `src/assets/` 目录中 (推荐)
 
-You can store images inside `src/assets/` directory. These images will be automatically optimized by Astro through [Image Service API](https://docs.astro.build/en/reference/image-service-reference/).
+您可以将图片存储在 `src/assets/` 目录中。这些图片将通过 [Image Service API](https://docs.astro.build/en/reference/image-service-reference/) 由 Astro 自动优化。
 
-You can use relative path or alias path (`@/assets/`) to serve these images.
+您可以使用相对路径或别名路径 (`@/assets/`) 来引用这些图片。
 
-Example: Suppose you want to display `example.jpg` whose path is `/src/assets/images/example.jpg`.
-
-```md
-![something](@/assets/images/example.jpg)
-
-<!-- OR -->
-
-![something](../../assets/images/example.jpg)
-
-<!-- Using img tag or Image component won't work ❌ -->
-<img src="@/assets/images/example.jpg" alt="something">
-<!-- ^^ This is wrong -->
-```
-
-> Technically, you can store images inside any directory under `src`. In here, `src/assets` is just a recommendation.
-
-### Inside `public` directory
-
-You can store images inside the `public` directory. Keep in mind that images stored in the `public` directory remain untouched by Astro, meaning they will be unoptimized and you need to handle image optimization by yourself.
-
-For these images, you should use an absolute path; and these images can be displayed using [markdown annotation](https://www.markdownguide.org/basic-syntax/#images-1) or [HTML img tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img).
-
-Example: Assume `example.jpg` is located at `/public/assets/images/example.jpg`.
+示例：假设您想显示 `example.jpg`，其路径为 `/src/assets/images/example.jpg`。
 
 ```md
-![something](/assets/images/example.jpg)
+![一些描述](@/assets/images/example.jpg)
 
-<!-- OR -->
+<!-- 或者 -->
 
-<img src="/assets/images/example.jpg" alt="something">
+![一些描述](../../assets/images/example.jpg)
+
+<!-- 使用 img 标签或 Image 组件将不起作用 ❌ -->
+<img src="@/assets/images/example.jpg" alt="一些描述">
+<!-- ^^ 这是错误的 -->
 ```
 
-## Bonus
+> 从技术上讲，您可以将图片存储在 `src` 下的任何目录中。在这里，`src/assets` 只是一个建议。
 
-### Image compression
+### 在 `public` 目录中
 
-When you put images in the blog post (especially for images under `public` directory), it is recommended that the image is compressed. This will affect the overall performance of the website.
+您可以将图片存储在 `public` 目录中。请记住，存储在 `public` 目录中的图片不会被 Astro 处理，这意味着它们不会被优化，您需要自己处理图片优化。
 
-My recommendation for image compression sites.
+对于这些图片，您应该使用绝对路径；并且这些图片可以使用 [Markdown 标注](https://www.markdownguide.org/basic-syntax/#images-1) 或 [HTML img 标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)来显示。
+
+示例：假设 `example.jpg`位于 `/public/assets/images/example.jpg`。
+
+```md
+![一些描述](/assets/images/example.jpg)
+
+<!-- 或者 -->
+
+<img src="/assets/images/example.jpg" alt="一些描述">
+```
+
+## 额外加分项
+
+### 图片压缩
+
+当您在博客文章中放置图片时（特别是对于 `public` 目录下的图片），建议对图片进行压缩。这将影响网站的整体性能。
+
+我推荐的图片压缩网站：
 
 - [TinyPng](https://tinypng.com/)
 - [TinyJPG](https://tinyjpg.com/)
 
-### OG Image
+### OG 图片
 
-The default OG image will be placed if a post does not specify the OG image. Though not required, OG image related to the post should be specify in the frontmatter. The recommended size for OG image is **_1200 X 640_** px.
+如果一篇文章没有指定 OG 图片，将会使用默认的 OG 图片。虽然不是必需的，但建议在 frontmatter 中指定与文章内容相关的 OG 图片。OG 图片的推荐尺寸是 **_1200 X 640_** 像素。
 
-> Since AstroPaper v1.4.0, OG images will be generated automatically if not specified. Check out [the announcement](https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/).
+> 从 AstroPaper v1.4.0 开始，如果未指定 OG 图片，将会自动生成。请查看[相关公告](https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/)。
