@@ -12,12 +12,13 @@ html[data-theme="light"] {
   --border: #ece9e9;
 }
 
+/* --- 黑暗模式 --- */
 html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60;
-  --border: #ab4b08;
+  --background: #22272e;
+  --foreground: #cdd9e5;
+  --accent: #58a6ff;
+  --muted: #373e47;
+  --border: #444c56;
 }
 
 @theme inline {
