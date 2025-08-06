@@ -3,7 +3,7 @@ export const SITE = {
   author: "SETIX",
   profile: "https://github.com/SETIX-A",
   desc: "记录学习与生活",
-  title: "SETIX的小站",
+  title: "SETIX",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
