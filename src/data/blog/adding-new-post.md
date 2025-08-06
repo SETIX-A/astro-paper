@@ -9,8 +9,7 @@ draft: false
 tags:
   - docs
 description:
-  Some rules & recommendations for creating or adding new posts using AstroPaper
-  theme.
+  使用 AstroPaper 主题创建或添加新帖子的一些规则和建议。
 ---
 
 这里有一些关于在 AstroPaper 博客主题中创建新帖子的规则/建议、技巧和窍门。
