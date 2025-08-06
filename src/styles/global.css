@@ -69,15 +69,19 @@ html[data-theme="dark"] {
   scroll-margin-block: 1rem;
 }
 
-/* 
- * 将自动生成的英文目录标题 "Table of contents" 替换为中文 2025-08-04 22:00
+/*
+ * 正确的方法：将自动生成的英文目录标题 "Table of contents" 替换为中文 2025-08-06 22:00
  */
-article details > summary::before {
-  content: "展开/收起文章目录"; /* 这是您希望显示的中文标题 */
-  font-weight: 600; /* 可选：加粗字体 */
-}
 
-/* 隐藏掉原来的英文文本 */
+/* 1. 将 summary 标签里的原始英文文本字号设为0来隐藏它 */
 article details > summary {
   font-size: 0;
+}
+
+/* 2. 使用 ::before 伪元素添加中文标题，并且【关键】为它重设一个正常的字号 */
+article details > summary::before {
+  content: "展开/收起文章目录"; /* 这是您希望显示的中文标题 */
+  font-size: 1.125rem; /* 【这行是关键！】重设一个可见的字体大小 (这是18px) */
+  line-height: 1.75rem; /* 可选：设置行高，确保对齐美观 */
+  font-weight: 600;       /* 可选：加粗字体 */
 }
