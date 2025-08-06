@@ -68,3 +68,16 @@ html[data-theme="dark"] {
 :target {
   scroll-margin-block: 1rem;
 }
+
+/* 
+ * 将自动生成的英文目录标题 "Table of contents" 替换为中文 2025-08-04 22:00
+ */
+article details > summary::before {
+  content: "展开/收起文章目录"; /* 这是您希望显示的中文标题 */
+  font-weight: 600; /* 可选：加粗字体 */
+}
+
+/* 隐藏掉原来的英文文本 */
+article details > summary {
+  font-size: 0;
+}
