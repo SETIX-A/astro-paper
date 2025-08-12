@@ -1,0 +1,20 @@
+---
+// 你的页面布局和数据可以写在这里
+const videos = [
+  { title: "视频一", src: "https://media.222x.xyz/video1.mp4" },
+  { title: "视频二", src: "https://media.222x.xyz/video2.mp4" },
+  // ... 更多视频
+];
+---
+<h1>我的视频收藏</h1>
+<ul>
+  {videos.map(video => (
+    <li>
+      <h2>{video.title}</h2>
+      <video width="640" height="360" controls>
+        <source src={video.src} type="video/mp4">
+        您的浏览器不支持视频播放。
+      </video>
+    </li>
+  ))}
+</ul>
